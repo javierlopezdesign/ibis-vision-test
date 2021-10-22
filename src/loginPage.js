@@ -10,21 +10,32 @@ function Login() {
   const [password, setPassword] = useState("");
   const [authToken, setauthToken] = useState("");
 
-  async function loginUser(credentials) {
-    return await fetch('https://api.ibisvision.co.uk/api-token-auth/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    })
-    .then(
-      result => result.json()      
-    )
-    .then(
-      json => setauthToken(json.token)
-    )
+
+
+  const loginUser = async (credentials) => {
+    const loggingInfo = await (fetch('https://api.ibisvision.co.uk/api-token-auth/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+      })
+      .then( (response) => {
+        if(response.ok){
+          const userInfo = response.json();
+          console.log(userInfo);
+          setauthToken(userInfo.token);
+        }
+        else{
+          setauthToken("User or Password not found.");
+          // console.log(response.status)
+        }
+      })
+      )
+      // console.log(userInfo.token);
+  
   }
+
 
 
   function handleSubmit(event) {

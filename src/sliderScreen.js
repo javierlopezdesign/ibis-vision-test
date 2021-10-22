@@ -21,11 +21,13 @@ const SliderScreen = () => {
             <Nav tokenKey={tokenKey}/>
             <form>
 
-                <div className="sliderContainer">
+                <div className="sliderContainer" >
                     <p>You can change the position of the dot to the left or to the right. Drag the icon to change.</p>
-                    <div className="sliderBox">
+                    <div className="sliderBox" >
                         
                         <ReactSlider
+                            max = "2343"
+
                             className="horizontal-slider"
                             thumbClassName="example-thumb"
                             trackClassName="example-track"
