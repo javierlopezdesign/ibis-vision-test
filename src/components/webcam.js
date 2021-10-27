@@ -5,6 +5,8 @@ function WebcamComponent() {
 
     const videoRef = useRef(null);
 
+    
+
     const getVideo = () => {
         window.navigator.mediaDevices.getUserMedia({
             video: 1920,

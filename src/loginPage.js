@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from "./AuthContext";
-// import { UserContext } from "./UserContext";
+import { AuthContext } from "./contexts/AuthContext";
+// import { UserContext } from "./contexts/UserContext";
+import { WebCamContext } from "./contexts/WebCamContext";
+
 
 import { Icon } from '@iconify/react';
 import logoLogin from './static/images/logo-login.jpg'
@@ -12,12 +14,8 @@ function Login() {
   const history = useHistory();
   
   // useContext 
-  const [authToken, setAuthToken] = useContext(AuthContext)
-  // const setAuthToken = useContext(UserContext)
-  // const authToken = useContext(UserContext)
-
-  // const [authToken, setAuthToken] = useState("")
-  
+  const [authToken, setAuthToken] = useContext(AuthContext);
+  const [webcamState, setWebcamState] = useContext(WebCamContext);
 
   // local variables 
   const [user, setUser] = useState("");
@@ -42,7 +40,7 @@ function Login() {
   function loginSuccessHandler(token){
     setIsError(false);
     setAuthToken(token);
-    // console.log(authToken);
+    setWebcamState(true);
     history.push("/slider");
   }
   

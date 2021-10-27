@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { useHistory } from 'react-router-dom';
-import { UserContext } from "./UserContext";
+import { UserContext } from "./contexts/UserContext";
+import { WebCamContext } from "./contexts/WebCamContext";
 
 import ReactSlider from "react-slider";
 import WebcamComponent from './components/webcam'
+
 
 
 function SliderPage() {
@@ -16,8 +18,8 @@ function SliderPage() {
     // const [replicaMovement, setReplicaMovement] = useState(0);
 
     const [sliderValue, setSliderValue, replicaValue, setReplicaMovement] = useContext(UserContext);
+    const [webcamState, setWebcamState] = useContext(WebCamContext);
 
-    
     const sliderRef = useRef();
     const replicaBoxRef = useRef();
 
@@ -60,7 +62,7 @@ function SliderPage() {
                 </div>
                 <div className="pacientBox">
                     <div className="cameraBox">
-                        <WebcamComponent />
+                        {webcamState === true && <WebcamComponent />}
                     </div>
                     <div className="sliderReplicatorBox" ref={replicaBoxRef}>
                         <div className="replicaBall" style={{marginLeft: replicaValue + 'px'}}></div>

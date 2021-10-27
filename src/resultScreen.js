@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "./AuthContext";
-import { UserContext } from "./UserContext";
+import { AuthContext } from "./contexts/AuthContext";
+import { UserContext } from "./contexts/UserContext";
+import { WebCamContext } from "./contexts/WebCamContext";
 
 import WebcamComponent from './components/webcam'
 
@@ -11,11 +12,15 @@ const ResultScreen = () => {
 
     const [authToken, setAuthToken] = useContext(AuthContext);
     const [sliderValue, setSliderValue, replicaValue, setReplicaMovement] = useContext(UserContext);
+    const [webcamState, setWebcamState] = useContext(WebCamContext);
 
 
     function endSessionHandler() {
-        // redirect to login after logout...
+        // shut the camera once the user logs out.
+        setWebcamState(false);
+        // Empty the token!
         setAuthToken("");
+        // redirect to login after logout...
         history.push("/");
     }
    
@@ -24,7 +29,7 @@ const ResultScreen = () => {
             <div className="resultsContainer">
                 <div className="pacientBox">
                     <div className="cameraBox">
-                        <WebcamComponent />
+                        {webcamState === true && <WebcamComponent />}
                         <button onClick={endSessionHandler}>End Session</button>
                     </div>
                     <div className="resultsBox">
