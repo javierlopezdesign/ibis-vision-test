@@ -1,58 +1,84 @@
-import React from "react";
-import Nav from './static/nav';
-import { useState } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { useHistory } from 'react-router-dom';
+import { UserContext } from "./UserContext";
+
 import ReactSlider from "react-slider";
+// import WebcamComponent from './components/webcam'
 
 
 const SliderScreen = () => {
-    
-    const tokenKey = "389420394732472";
-    const [sliderValue, setSliderValue] = useState("");
 
-    const handleSlideChange = (newValue) => {
-        setSliderValue(newValue);
-        console.log(newValue);
-    }
+    // const history = useHistory();
+    // // console.log(history)
 
+    // // const [sliderValue, setSliderValue, replicaMovement, setReplicaMovement] = useContext(UserContext)
+
+    // // Gather any changes in the browser to catch slider and replica boxes width.
+    // // useEffect( () => {
+        
+    // //     setSliderWidth(sliderRef.current.getBoundingClientRect().width,[]);
+    // //     // 50px to remove the ball width
+    // //     setReplicaWidth((replicaBoxRef.current.getBoundingClientRect().width)-50,[]);
+
+    // // },[] )
+
+    // // Slider current value
+    // const [sliderValue, setSliderValue] = useState("");
     
+    // // Slider & replica width estates. 
+    // const [sliderWidth, setSliderWidth] = useState(0);
+    // const [replicaWidth, setReplicaWidth] = useState(0);
+    
+    // // replica movement estate
+    // const [replicaMovement, setReplicaMovement] = useState("");
+    
+    // // refs to slider div and replica div
+    // const sliderRef = useRef();
+    // const replicaBoxRef = useRef();
+
+    // // handler to catch onChange values in the ReactSlider component
+    // // set slider value estate and the replicamovement depending on the value of the slider.
+    // const sliderChangeHandler = (value) => {
+    //     let widthConversion = replicaWidth / sliderWidth;
+    //     setSliderValue(value,[]);
+    //     setReplicaMovement( () => (sliderValue * widthConversion),[]);
+    // }
+
+    // function formHandler(e){
+    //     e.preventDefault();
+    //     history.push("/results")
+    // }
 
     return (
-        <div>
-            <Nav tokenKey={tokenKey}/>
-            <form>
+        <div className="screen1">
+            <h1>slider</h1>
+            <h1>slider</h1>
+            <h1>slider</h1>
+            <h1>slider</h1>
 
+            {/* <form onSubmit={formHandler}>
                 <div className="sliderContainer" >
                     <p>You can change the position of the dot to the left or to the right. Drag the icon to change.</p>
-                    <div className="sliderBox" >
-                        
+                    <div className="sliderBox" ref={sliderRef}>
                         <ReactSlider
-                            max = "2343"
-
+                            max = {sliderWidth}
                             className="horizontal-slider"
                             thumbClassName="example-thumb"
                             trackClassName="example-track"
-                            renderThumb={
-                                (props, state) => <div 
-                                {...props}>
-                                    {handleSlideChange(state.valueNow)}
-                                </div>
-                                }
-                        />
+                            onChange={ (value) => sliderChangeHandler(value)}
+                            />
                     </div>
                 </div>
                 <div className="pacientBox">
                     <div className="cameraBox">
-                                <p>cameraBox</p>
-
+                        {/* <WebcamComponent /> */}
+                    {/* </div>
+                    <div className="sliderReplicatorBox" ref={replicaBoxRef}>
+                        <div className="replicaBall" style={{marginLeft: replicaMovement + 'px'}}></div>
                     </div>
-                    <div className="sliderReplicatorBox">
-                        <p>sliderReplicator</p>
-                        
-                    </div>
-
                 </div>
-            </form>
-            
+                <button type="submit">Next</button>
+            </form> */}
         </div>
     )
 

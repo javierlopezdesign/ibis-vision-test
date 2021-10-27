@@ -1,14 +1,17 @@
-import React from "react";
+import React,{ useContext } from "react";
+import { AuthContext } from "../AuthContext";
 
 
-function sliderScreen(props) {
-
+function Nav() {
+    
+    const authToken = useContext(AuthContext)
+    
     return (
         <div className="navBar">
-            <p>Token: {props.tokenKey}</p>
+            { authToken[0] ? <p>Token: {authToken}</p> : ""}       
         </div>
     )
 
 }
-export default sliderScreen;
+export default Nav;
 
