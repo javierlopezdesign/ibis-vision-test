@@ -23,10 +23,12 @@ function App() {
   // Webcam state, on or off when user is not using the camera.
   const [webcamState, setWebcamState] = useState(false);
 
+  // slider and replica values declared in the parent to share it with the children components
   const [sliderValue, setSliderValue] = useState(0);
   const [replicaValue, setReplicaMovement] = useState(0);
 
-  // the last [] trigger just useMemo when the values changes!!!!
+  //  the last [] trigger just useMemo when the values changes!!!!
+  // useMemo to store the variables in the useContext hook
   const providerValue = useMemo(()=>[
     sliderValue, setSliderValue, replicaValue, setReplicaMovement], [
     sliderValue, setSliderValue, replicaValue, setReplicaMovement])
@@ -38,31 +40,20 @@ function App() {
   const providerWebCam = useMemo(()=>[
     webcamState, setWebcamState], [
     webcamState, setWebcamState])
-
     
   return (
     <>
       <Router>
         <Switch>
             <AuthContext.Provider value={providerAuth}>
-              
               <Nav />
-
               <UserContext.Provider value={providerValue}>
                 <WebCamContext.Provider value={providerWebCam}>
-                
-                <Route path="/" exact component={LoginPage} />
-
-                
+                  <Route path="/" exact component={LoginPage} />
                   <Route path="/slider" component={SliderPage}/>  
-
                   <Route path="/results" component={ResultScreen}/>       
-
                 </WebCamContext.Provider>
-
-    
                 <Redirect from="*" to="/" />
-
               </UserContext.Provider>
             </AuthContext.Provider>
         </Switch>

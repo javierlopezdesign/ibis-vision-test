@@ -36,7 +36,7 @@ function Login() {
       }
     })
   }
-
+  // login success handler, remove the error if it was before, store the token and set the webcam state to true.
   function loginSuccessHandler(token){
     setIsError(false);
     setAuthToken(token);
@@ -44,6 +44,7 @@ function Login() {
     history.push("/slider");
   }
   
+  // if login is an error, 
   function loginErrorHandler(){
     setIsError(true);
     setAuthToken("");
@@ -69,6 +70,7 @@ return (
         <form onSubmit={handleSubmit}>
             
             <div>
+              {/* if the isError state is true change the className to display the error */}
               <p className={ (isError === true) ? "errorMessage" : "loginMessage"}>
                 Error: user or password not found. Try again...
               </p>
